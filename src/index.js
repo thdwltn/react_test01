@@ -1,17 +1,58 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import '../src/App.css';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+(function(){
+  function App(){
+    const [title,setTitle] = React.useState('')
+    return(
+      <>
+      <div id="all">
+      <button title="red" onClick={()=>console.log('red')}>red</button>
+      <button title="green" onClick={()=>console.log('green')}>green</button>
+      <button title="blue" onClick={()=>console.log('blue')}>blue</button>
+      <button title="violet" onClick={()=>console.log('violet')}>violet</button>
+      <div className="main"><img src="../source/blue.png" alt="상세이미지"/></div>
+      </div>
+      </>
+    )
+  }
+  function Img(props){
+    function onImgClick(e){
+      props.ImgClick(e.target.value);66
+    }
+    return(
+      <div>
+       <img src= {`../images/${props.title}.jpg`} alt="상세이미지"/>
+      </div>
+      
+    )
+  }
+  function btn(props){
+    return(
+      
+      <button title="red" 
+      defaultValue={props.title}
+      // eslint-disable-next-line no-undef
+      onClick = {onImgClick}
+      >red</button>
+      
+      
+    )
+  }
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+
+  Img.defaultProps = {
+    title: "red",
+  };
+
+
+
+
+  // 수출
+  const root = ReactDOM.createRoot(document.querySelector('#root'));
+  root.render(
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>)
+})()
